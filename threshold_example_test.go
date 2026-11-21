@@ -4,13 +4,13 @@ import (
 	"context"
 	"crypto/sha256"
 	"fmt"
+
+	"github.com/soroauth/soroauth-go"
+	"github.com/soroauth/soroauth-go/frost"
 	"github.com/stellar/go-stellar-sdk/keypair"
 	"github.com/stellar/go-stellar-sdk/network"
 	"github.com/stellar/go-stellar-sdk/xdr"
-	"github.com/soroauth/soroauth-go"
-	"github.com/soroauth/soroauth-go/frost"
 )
-
 
 // ExampleThresholdSigner_success demonstrates a successful signature using a threshold signer
 // with enough participants contributing valid shares.

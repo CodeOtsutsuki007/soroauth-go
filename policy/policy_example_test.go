@@ -3,10 +3,11 @@ package policy_test
 import (
 	"context"
 	"fmt"
-	"github.com/stellar/go-stellar-sdk/network"
-	"github.com/stellar/go-stellar-sdk/xdr"
+
 	"github.com/soroauth/soroauth-go"
 	"github.com/soroauth/soroauth-go/policy"
+	"github.com/stellar/go-stellar-sdk/network"
+	"github.com/stellar/go-stellar-sdk/xdr"
 )
 
 func ExamplePolicy() {

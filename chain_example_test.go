@@ -4,10 +4,11 @@ import (
 	"context"
 	"crypto/sha256"
 	"fmt"
+
+	"github.com/soroauth/soroauth-go"
 	"github.com/stellar/go-stellar-sdk/keypair"
 	"github.com/stellar/go-stellar-sdk/network"
 	"github.com/stellar/go-stellar-sdk/xdr"
-	"github.com/soroauth/soroauth-go"
 )
 
 func ExampleNewFallbackSigner() {
