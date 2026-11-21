@@ -1,10 +1,14 @@
 package soroauth_test
 
 import (
-	"fmt"
-	"github.com/soroauth/soroauth-go"
 	"context"
+	"crypto/sha256"
+	"fmt"
+	"github.com/stellar/go-stellar-sdk/keypair"
+	"github.com/stellar/go-stellar-sdk/network"
 	"github.com/stellar/go-stellar-sdk/xdr"
+	"github.com/soroauth/soroauth-go"
+	"github.com/soroauth/soroauth-go/frost"
 )
 
 
@@ -105,4 +109,35 @@ func ExampleThresholdSigner_refusalBelowThreshold() {
 	// Refused cleanly: below threshold, no partial result produced.
 	// Sign failed as expected due to missing signers.
 }
+func ExampleFROSTSigner() {
+	seedHash := sha256.Sum256([]byte("threshold-example"))
+	kp, _ := keypair.FromRawSeed(seedHash)
+	address := kp.Address()
 
+	secretShares, vk, pkShares, err := frost.TrustedDealerKeygen(2, 3)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	coord, err := frost.NewFROSTCoordinator(vk, pkShares, 2, 3, address)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	p1, _ := frost.NewFROSTParticipant(secretShares[0], pkShares[0], 1, coord)
+	signer, err := frost.NewFROSTSigner(coord, []*frost.FROSTParticipant{p1})
+	if err != nil {
+		fmt.Println("below-threshold refusal successfully caught:", err != nil)
+		return
+	}
+
+	entry := xdr.SorobanAuthorizationEntry{}
+	preimage, _ := soroauth.Preimage(entry, 1000, network.TestNetworkPassphrase)
+	payload, _ := soroauth.Payload(preimage)
+	_, _ = signer.Sign(context.Background(), preimage, payload)
+
+	// Output:
+	// below-threshold refusal successfully caught: true
+}
