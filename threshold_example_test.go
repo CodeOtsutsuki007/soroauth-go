@@ -1,11 +1,12 @@
 package soroauth_test
 
 import (
-	"context"
 	"fmt"
 	"github.com/soroauth/soroauth-go"
+	"context"
 	"github.com/stellar/go-stellar-sdk/xdr"
 )
+
 
 // ExampleThresholdSigner_success demonstrates a successful signature using a threshold signer
 // with enough participants contributing valid shares.
@@ -104,3 +105,4 @@ func ExampleThresholdSigner_refusalBelowThreshold() {
 	// Refused cleanly: below threshold, no partial result produced.
 	// Sign failed as expected due to missing signers.
 }
+

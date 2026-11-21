@@ -1,14 +1,14 @@
 package soroauth_test
 
 import (
-	"context"
 	"crypto/sha256"
 	"fmt"
-	"errors"
-
 	"github.com/stellar/go-stellar-sdk/keypair"
 	"github.com/soroauth/soroauth-go"
+	"context"
+	"errors"
 )
+
 
 // ExampleNewFallbackSigner demonstrates fallback behavior in a signer chain.
 // When the primary signer encounters a transient failure, the chain falls back
@@ -66,3 +66,4 @@ func ExampleNewQuorumSigner() {
 	// Output:
 	// Quorum not met error occurred: true
 }
+
