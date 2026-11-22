@@ -11,7 +11,7 @@ import (
 )
 
 func ExamplePolicy() {
-	rule := policy.NewAmountLimitRule(100)
+	rule := policy.NewMaxAmountRule(100)
 	pol := policy.New(rule)
 
 	entry := xdr.SorobanAuthorizationEntry{}
