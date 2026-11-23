@@ -10,7 +10,7 @@ this project adheres to
 
 ### Added
 
-- Add Go doc examples for signer chain fallback/quorum, threshold signer, policy package, and document authorized function types. (#652, #653, #654, #655)
+- Add Go doc examples for signer chain fallback/quorum, threshold signer, policy package, and document authorized function types. (#652, #653, #654, #655, #703)
 
 - Add a per-caller token-bucket rate limit to the verification service, checked
   before the body is read and before a concurrency slot is taken. A refusal is
