@@ -20,7 +20,7 @@ func ExampleNewFallbackSigner() {
 	kp2, _ := keypair.FromRawSeed(seedHash2)
 	s2 := soroauth.NewEd25519Signer(kp2)
 
-	chain := soroauth.NewFallbackSigner([]soroauth.Signer{s1, s2})
+	chain := soroauth.NewFallbackSigner(s1, s2)
 	_ = chain
 	fmt.Println("fallback chain constructed")
 	// Output:
